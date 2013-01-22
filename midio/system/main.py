@@ -14,7 +14,10 @@ serialport = serial.Serial("/dev/ttyAMA0", 38400)
 
 
 # Create an instance of the PyScope class
-fb = fullfb()
+fb = fullfb.init()
+print "opening fb"
 
 time.sleep(1)
 
+
+print "Quit"
