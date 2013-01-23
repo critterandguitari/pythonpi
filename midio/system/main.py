@@ -27,13 +27,23 @@ patches.append(imp.load_source('p2','../patches/p2.py'))
 
 
 count = 0
+patch = None 
+patch = patches[0]
+
+
+print len(patches)
+num = 0
 while 1:
 
     count += 1
-    if count > 30 : count = 0
     print count
+    if count > 30 :
+        count = 0
+        num += 1
+        if num == len(patches) : num = 0
+        patch = patches[num]
     
-    patches[0].loop(screen)
+    patch.loop(screen)
 
     pygame.display.flip()
 
