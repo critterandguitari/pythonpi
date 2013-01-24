@@ -2,7 +2,7 @@ import os
 import pygame
 import time
 import random
-import serial
+#import serial
 import fullfb
 import glob
 
@@ -13,7 +13,7 @@ def get_immediate_subdirectories(dir):
 
 #add the line init_uart_clock=2441406  to /boot/config.txt to make 38400 into 31250
 #serialport = serial.Serial("/dev/ttyAMA0", 38400, timeout=0.5)
-serialport = serial.Serial("/dev/ttyAMA0", 38400)
+#serialport = serial.Serial("/dev/ttyAMA0", 38400)
 
 
 
