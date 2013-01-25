@@ -2,7 +2,7 @@ import os
 import time
 import serial
 
-serialport = serial.Serial("/dev/ttyUSB0", 38400)
+serialport = serial.Serial("/dev/ttyAMA0", 38400)
 
 
 while 1:

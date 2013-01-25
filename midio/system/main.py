@@ -2,7 +2,7 @@ import os
 import pygame
 import time
 import random
-#import serial
+import serial
 import fullfb
 import glob
 
@@ -13,22 +13,18 @@ def get_immediate_subdirectories(dir):
 
 #add the line init_uart_clock=2441406  to /boot/config.txt to make 38400 into 31250
 #serialport = serial.Serial("/dev/ttyAMA0", 38400, timeout=0.5)
-#serialport = serial.Serial("/dev/ttyAMA0", 38400)
+serialport = serial.Serial("/dev/ttyAMA0", 38400)
 
 
 
 # Create an instance of the PyScope class
-screen = fullfb.init()
-
 print "opening frame buffer"
+screen = fullfb.init()
 
 
 print "loading patches..."
-
 import imp
-
 patches = []
-
 patch_folders = get_immediate_subdirectories('../patches/')
 
 for patch_folder in patch_folders :
@@ -40,23 +36,43 @@ for patch_folder in patch_folders :
 
 count = 0
 patch = None 
-patch = patches[0]
+patch = patches[1]
 
 print len(patches)
 num = 0
+
+serialport.flushInput()
+
 while 1:
 
     count += 1
-    print count
-    if count > 100 :
-        count = 0
-        num += 1
-        if num == len(patches) : num = 0
-        patch = patches[num]
+    if count > 5 : count = 0
     
-    patch.draw(screen)
+    s = serialport.readline()
+    s = s.rstrip()
+    array = s.split(',')
+#    print array
+#    print len(array)
 
-    pygame.display.flip()
+    # basic parse next command
+    if len(array) == 1:
+        if array[0] == "n" :
+            num += 1
+            if num == len(patches) : num = 0
+            patch = patches[num]
+
+    # basic parse of knob array
+    size = 1
+    if len(array) == 4 :
+        if array[0] == "k" :
+            if array[1].isdigit() :
+                size = int(array[1])
+    
+    print serialport.inWaiting()
+    
+    if count == 0:
+        patch.draw(screen, size)
+        pygame.display.flip()
 
 
 

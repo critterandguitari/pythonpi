@@ -32,10 +32,10 @@ def init():
     
     size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
     print "Framebuffer size: %d x %d" % (size[0], size[1])
-    #self.screen = pygame.display.set_mode(size, pygame.DOUBLEBUF)
     
     pygame.mouse.set_visible(False)
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+    #screen = pygame.display.set_mode(size, pygame.FULLSCREEN | pygame.DOUBLEBUF)
 
 
     # Clear the screen to start
