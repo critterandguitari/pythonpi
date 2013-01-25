@@ -11,7 +11,7 @@ while 1:
     s = serialport.readline()
     s = s.rstrip()
     array = s.split(',')
-    print array
+    #print array
 
     
     # basic parse next command
