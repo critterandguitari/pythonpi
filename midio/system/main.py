@@ -12,9 +12,8 @@ def get_immediate_subdirectories(dir):
 
 
 #add the line init_uart_clock=2441406  to /boot/config.txt to make 38400 into 31250
-#serialport = serial.Serial("/dev/ttyAMA0", 38400, timeout=0.5)
-serialport = serial.Serial("/dev/ttyAMA0", 38400)
-
+# or add the line init_uart_clock=13020833 to change 115200 into .5Mbs 
+serialport = serial.Serial("/dev/ttyAMA0", 115200)
 
 
 # Create an instance of the PyScope class
@@ -46,7 +45,7 @@ serialport.flushInput()
 while 1:
 
     count += 1
-    if count > 5 : count = 0
+    if count > 2 : count = 0
     
     s = serialport.readline()
     s = s.rstrip()
