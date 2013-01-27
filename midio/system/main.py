@@ -16,11 +16,8 @@ def get_immediate_subdirectories(dir):
 print "init serial port"
 serialport = serial.Serial("/dev/ttyAMA0", 115200)
 
-
-# Create an instance of the PyScope class
 print "opening frame buffer"
 screen = fullfb.init()
-
 
 print "loading patches..."
 import imp
@@ -33,11 +30,9 @@ for patch_folder in patch_folders :
     print patch_path
     patches.append(imp.load_source(patch_name, patch_path))
 
-
-count = 0
+# set initial patch
 patch = None 
-patch = patches[1]
-
+patch = patches[0]
 print len(patches)
 num = 0
 
@@ -47,9 +42,6 @@ serialport.flushInput()
 size = 1
 while 1:
 
-    count += 1
-    if count > 2 : count = 0
-    
     s = serialport.readline()
     s = s.rstrip()
     array = s.split(',')
