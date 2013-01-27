@@ -14,5 +14,4 @@ def draw(screen, vsynth):
     color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
     pygame.draw.line(screen, color, [x, y], [x1, y1], width)
 
-    time.sleep(.05)
 

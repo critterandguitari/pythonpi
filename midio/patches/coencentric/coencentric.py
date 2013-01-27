@@ -14,7 +14,6 @@ def draw(screen, vsynth):
     size = vsynth.size
     color = (random.choice([0, 255]), random.choice([0,255]), random.choice([0,255]))
     pygame.draw.circle(screen,color,[x,y],size)
-    time.sleep(.05)
 
 
     
