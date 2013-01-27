@@ -3,6 +3,10 @@ import pygame
 import time
 import random
 
+def setup():
+    print "setting up random circles ..."
+
+
 def draw(screen, vsynth):
     x=random.randrange(0,700)
     y=random.randrange(0,400)
