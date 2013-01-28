@@ -5,14 +5,15 @@ import random
 import serial
 import fullfb
 import glob
+import hardware
+import imp
 
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
 
 
-#add the line init_uart_clock=2441406  to /boot/config.txt to make 38400 into 31250
-# or add the line init_uart_clock=13020833 to change 115200 into .5Mbs 
+# add the line init_uart_clock=13020833 to change 115200 into .5Mbs 
 print "init serial port"
 serialport = serial.Serial("/dev/ttyAMA0", 115200)
 
@@ -20,7 +21,6 @@ print "opening frame buffer"
 screen = fullfb.init()
 
 print "loading patches..."
-import imp
 patches = []
 patch_folders = get_immediate_subdirectories('../patches/')
 
@@ -32,49 +32,51 @@ for patch_folder in patch_folders :
 
 # set initial patch
 patch = None 
-patch = patches[0]
-print len(patches)
 num = 0
+patch = patches[num]
 
+# run setup functions if patches have them
+for patch in patches :
+    try :
+        patch.setup()
+    except AttributeError :
+        print "no setup found"
+        continue 
+
+# flush serial port
 serialport.flushInput()
 
+#create vsynth object
+vsynth = hardware.HardwareInput()
 
-size = 1
+
 while 1:
 
+    #print serialport.inWaiting()    
+    # get serial line and parse it
     s = serialport.readline()
     s = s.rstrip()
-    array = s.split(',')
-    print array
-    
-    # basic parse next command
-    if len(array) == 1:
-        if array[0] == "n" :
-            num += 1
-            if num == len(patches) : num = 0
-            patch = patches[num]
+    vsynth.parse_serial(s)
 
-    # basic parse of knob array
-    if len(array) == 4 :
-        if array[0] == "k" :
-            if array[1].isdigit() :
-                size = int(array[1])
+    if vsynth.next_patch: 
+        num += 1
+        if num == len(patches) : num = 0
+        patch = patches[num]
 
-    # basic parse sd key (this is supposed to be mapped to shutdowh -h now)
-    if len (array) == 1:
-        if array[0] == "sd" :
-            screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
-            pygame.display.flip()
 
-    print serialport.inWaiting()
+    if vsynth.clear_screen:
+        screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
+        pygame.display.flip()
+
  
     # basic parse note on command
-    if len(array) == 1:
-        if array[0] == "no" :
-            print "doin it"
-            patch.draw(screen, size)
-            pygame.display.flip()
-   
+    if vsynth.note_on:
+        print "doin it"
+        patch.draw(screen, vsynth)
+        pygame.display.flip()
+
+    # clear all the events
+    vsynth.clear_flags()
 
 time.sleep(1)
 

@@ -11,7 +11,7 @@ def draw(screen, vsynth):
     #offsety += 1
     x = screen.get_rect().centerx
     y = screen.get_rect().centery
-    size = vsynth.size
+    size = vsynth.knob2
     color = (random.choice([0, 255]), random.choice([0,255]), random.choice([0,255]))
     pygame.draw.circle(screen,color,[x,y],size)
 
