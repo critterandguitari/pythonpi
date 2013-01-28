@@ -79,6 +79,7 @@ while 1:
 
     # clear all the events
     vsynth.clear_flags()
+    time.sleep(.01)
 
 time.sleep(1)
 
