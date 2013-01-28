@@ -49,14 +49,20 @@ serialport.flushInput()
 #create vsynth object
 vsynth = hardware.HardwareInput()
 
+buf = ''
+line = ''
 
 while 1:
 
     #print serialport.inWaiting()    
-    # get serial line and parse it
-    s = serialport.readline()
-    s = s.rstrip()
-    vsynth.parse_serial(s)
+    # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
+    if serialport.inWaiting() > 0:
+        buf = buf + serialport.read(serialport.inWaiting())
+        if '\n' in buf :
+            lines = buf.split('\n')
+            line = lines[-2]
+            buf = lines[-1]
+            vsynth.parse_serial(line)
 
     if vsynth.next_patch: 
         num += 1
@@ -67,13 +73,9 @@ while 1:
     if vsynth.clear_screen:
         screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         pygame.display.flip()
-
  
-    # basic parse note on command
-    if vsynth.note_on:
-        print "doin it"
-        patch.draw(screen, vsynth)
-        pygame.display.flip()
+    patch.draw(screen, vsynth)
+    pygame.display.flip()
 
     # clear all the events
     vsynth.clear_flags()

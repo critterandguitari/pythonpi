@@ -17,11 +17,11 @@ def setup() :
 
 def draw(screen, vsynth) :
     global images, image_index
-    
-    image_index += 1
-    if image_index == len(images) : image_index = 0
-    image = images[image_index]
-
-    screen.fill((0, 0, 0))
-    rect = image.get_rect()
-    screen.blit(image, rect)
+  
+    if vsynth.note_on:
+        image_index += 1
+        if image_index == len(images) : image_index = 0
+        image = images[image_index]
+        screen.fill((0, 0, 0))
+        rect = image.get_rect()
+        screen.blit(image, rect)
