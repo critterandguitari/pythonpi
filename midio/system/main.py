@@ -52,6 +52,8 @@ vsynth = hardware.HardwareInput()
 buf = ''
 line = ''
 
+vsynth.clear_flags()
+
 while 1:
 
     #print serialport.inWaiting()    
@@ -79,7 +81,7 @@ while 1:
 
     # clear all the events
     vsynth.clear_flags()
-    time.sleep(.01)
+    #time.sleep(.01)
 
 time.sleep(1)
 

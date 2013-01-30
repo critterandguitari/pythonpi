@@ -2,10 +2,10 @@ import os
 import pygame
 import time
 import random
+import pygame.gfxdraw
 
 def setup():
     print "setting up random circles ..."
-
 
 def draw(screen, vsynth):
     if vsynth.note_on :
@@ -13,4 +13,9 @@ def draw(screen, vsynth):
         y=random.randrange(0,400)
         size = vsynth.knob2
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
-        pygame.draw.circle(screen,color,[x,y],size)
+        width = vsynth.knob1 // 50
+        if width == 0 : width = 1
+        if width > size : width = size
+        pygame.draw.circle(screen,color,[x,y],size, 0)
+#        pygame.gfxdraw.aacircle(screen, x, y, size, color)
+#        pygame.gfxdraw.filled_circle(screen, x, y, size, color)
