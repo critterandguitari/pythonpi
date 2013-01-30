@@ -73,7 +73,8 @@ while 1:
 
 
     if vsynth.clear_screen:
-        screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
+        #screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
+        screen.fill( (0,0,0)) 
         pygame.display.flip()
  
     patch.draw(screen, vsynth)
