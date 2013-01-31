@@ -16,6 +16,7 @@ def draw(screen, vsynth):
         width = vsynth.knob1 // 50
         if width == 0 : width = 1
         if width > size : width = size
-        pygame.draw.circle(screen,color,[x,y],size, 0)
+        pos = pygame.mouse.get_pos()
+        pygame.draw.circle(screen,color,pos,size, 0)
 #        pygame.gfxdraw.aacircle(screen, x, y, size, color)
 #        pygame.gfxdraw.filled_circle(screen, x, y, size, color)

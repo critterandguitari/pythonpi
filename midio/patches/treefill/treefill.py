@@ -7,6 +7,7 @@ import glob
 
 images = []
 image_index = 0
+count = 0
 
 def setup():
     global images
@@ -29,6 +30,14 @@ def draw(screen, vsynth):
         if width > size : width = size
         pygame.draw.circle(screen,color,[x,y],size, 0)
         global images
-        image = images[0]
+        global count, image_index
+        count += 1
+        if count > 8 :
+            count = 0
+            screen.fill((0,0,0))
+            image_index += 1
+            if image_index == len(images) : image_index = 0
+        image = images[image_index]
         rect = image.get_rect()
-        screen.blit(image, rect)   
+        screen.blit(image, rect)  
+
