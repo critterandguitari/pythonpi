@@ -8,6 +8,8 @@ import glob
 import hardware
 import imp
 
+from pygame.locals import *
+
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
@@ -17,6 +19,7 @@ def get_immediate_subdirectories(dir):
 #print "init serial port"
 #serialport = serial.Serial("/dev/ttyAMA0", 115200)
 
+pygame.init()
  
 # Set the height and width of the screen
 print "opening frame buffer"
@@ -36,7 +39,7 @@ for patch_folder in patch_folders :
 
 # set initial patch
 patch = None 
-num = 2
+num = 4
 patch = patches[num]
 
 # run setup functions if patches have them
@@ -60,6 +63,19 @@ line = ''
 
 while 1:
 
+    for event in pygame.event.get():
+        if event.type == KEYDOWN:
+            if pygame.key.get_pressed()[K_ESCAPE]:
+                pygame.quit()
+                sys.exit()
+            if pygame.key.get_pressed()[K_RETURN]:
+                vsynth.note_on = True
+            if pygame.key.get_pressed()[K_SPACE]:
+                vsynth.clear_screen = True
+            if pygame.key.get_pressed()[K_RIGHT]:
+                vsynth.next_patch = True
+
+
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
 
@@ -68,8 +84,6 @@ while 1:
         if num == len(patches) : num = 0
         patch = patches[num]
 
-
-    vsynth.clear_screen = True
     if vsynth.clear_screen:
         screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         #screen.fill( (0,0,0)) 
@@ -80,7 +94,7 @@ while 1:
 
     # clear all the events
     vsynth.clear_flags()
-    #time.sleep(.01)
+    time.sleep(.01)
 
 time.sleep(1)
 

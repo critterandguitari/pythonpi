@@ -2,9 +2,9 @@
 class HardwareInput:
     
     next_patch = False
-    knob1 = 0
-    knob2 = 0
-    knob3 = 0
+    knob1 = 200
+    knob2 = 200
+    knob3 = 200
     clear_screen = False
     note_on = False
     note_off = False
