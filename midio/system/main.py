@@ -72,6 +72,12 @@ while 1:
         patch = patches[num]
 
 
+    if vsynth.quarter_note : 
+#        screen.fill ((0,0,0))
+#        pygame.display.flip()
+        print "some note" 
+
+
     if vsynth.clear_screen:
         #screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         screen.fill( (0,0,0)) 

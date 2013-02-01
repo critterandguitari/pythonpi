@@ -5,15 +5,11 @@ import random
 import pygame.gfxdraw
 
 def setup():
-    print "setting up random circles ..."
+    print "setting up random pies ..."
 
 def draw(screen, vsynth):
-    if vsynth.quarter_note :
-        color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
-        screen.fill(color) 
-          
-
     if vsynth.note_on :
+        pierad=random.randrange(0,360) #radius/Radians?
         x=random.randrange(0,700)
         y=random.randrange(0,400)
         size = vsynth.knob2
@@ -21,7 +17,9 @@ def draw(screen, vsynth):
         width = vsynth.knob1 // 50
         if width == 0 : width = 1
         if width > size : width = size
-        pos = (x,y)#pygame.mouse.get_pos()
-        pygame.draw.circle(screen,color,pos,size, 0)
+        pygame.gfxdraw.pie(screen, x, y, pierad, 5, 50, color)
+#        pygame.draw.circle(screen,color,[x,y],size, 0)
 #        pygame.gfxdraw.aacircle(screen, x, y, size, color)
 #        pygame.gfxdraw.filled_circle(screen, x, y, size, color)
+
+#pgyame.gfxdraw.pie(surface, x, y, r, start, end, color): return None

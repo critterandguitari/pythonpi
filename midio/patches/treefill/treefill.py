@@ -20,6 +20,11 @@ def setup():
 
 
 def draw(screen, vsynth):
+    if vsynth.quarter_note :
+        color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+        screen.fill(color) 
+    
+
     if vsynth.note_on :
         x=random.randrange(0,700)
         y=random.randrange(0,400)
