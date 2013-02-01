@@ -18,6 +18,8 @@ def draw(screen, vsynth):
         y=random.randrange(0,400)
         size = vsynth.knob2
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+        #color = pygame.Color.hsva( (float(vsynth.knob3) / 1024) * 360, 100, 100, 50)#(random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+        #color = Color.hsva( 20, 100, 100, 50)#(random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
         width = vsynth.knob1 // 50
         if width == 0 : width = 1
         if width > size : width = size
