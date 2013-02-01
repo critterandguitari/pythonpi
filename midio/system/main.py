@@ -62,9 +62,13 @@ while 1:
         buf = buf + serialport.read(serialport.inWaiting())
         if '\n' in buf :
             lines = buf.split('\n')
-            line = lines[-2]
+            for l in lines :
+                vsynth.parse_serial(l)
+            #line = lines[-2]
             buf = lines[-1]
-            vsynth.parse_serial(line)
+
+
+
 
     if vsynth.next_patch: 
         num += 1

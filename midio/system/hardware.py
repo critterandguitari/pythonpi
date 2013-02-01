@@ -19,8 +19,12 @@ class HardwareInput:
     eighth_note_triplet = False
     sixteenth_note = False
     thirtysecond_note = False
-    
+
+    half_note = False
+    whole_note = False
+
     midi_clk_count = 0
+    whole_note_count = 0
 
     note_ch = 1
     note_velocity = 0
@@ -45,13 +49,17 @@ class HardwareInput:
             if array[0] == "ms" :
                 self.midi_start = True
                 self.midi_clk_count = 0
+                self.whole_note_count = 0
         
         # basic midi syn
         if len(array) == 1:
             if array[0] == "my" :
 #                print self.midi_clk_count
                 self.clk = True
-     
+                
+                if self.whole_note_count == 0: self.whole_note = True
+                if (self.whole_note_count % 48) == 0: self.half_note = True
+
                 if self.midi_clk_count == 0 : self.quarter_note = True
                 if (self.midi_clk_count % 12) == 0 : self.eighth_note = True
                 if (self.midi_clk_count % 8) == 0 : self.eighth_note_triplet = True
@@ -60,6 +68,10 @@ class HardwareInput:
 
                 self.midi_clk_count += 1
                 if self.midi_clk_count == 24 : self.midi_clk_count = 0
+
+                self.whole_note_count += 1
+                if self.whole_note_count == 96 : self.midi_clk_count = 0
+
 
         # basic parse of knob array
         if len(array) == 4 :
@@ -107,6 +119,8 @@ class HardwareInput:
         self.eighth_note_triplet = False
         self.sixteenth_note = False
         self.thirtysecond_note = False
-      
+        self.half_note = False
+        self.whole_note = False
+
 
 
