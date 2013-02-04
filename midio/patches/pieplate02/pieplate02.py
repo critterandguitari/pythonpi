@@ -8,6 +8,8 @@ def setup():
     print "setting up random pies ..."
 
 def draw(screen, vsynth):
+	print "drawing pieplate 2"
+    
 	if vsynth.half_note: 
 		screen.fill((0,0,0))
 			

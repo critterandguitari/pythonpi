@@ -1,12 +1,34 @@
+doc = null
+currentPatch = ''
 
-function getPatch(doc, patch) {
+
+function getPatch(patch) {
     $.get('http://raspberrypi.local:8080/patch/' + patch, function(data) {
         doc.setValue(data);
-        alert("cool");
+        currentPatch = patch
     });
 }
 
+function getPatchList() {
+     $.getJSON('http://raspberrypi.local:8080', function(data) {
+        $.each(data, function (i,v) {
+          
+            $patch = $('<div></div>').append(v);
+            $patch.click(function () {
+                getPatch(v);
+            });
+           $("#owen").append($patch);
+        });
+    });
+}
 
+function savePatch() {
+    
+    $.post("http://raspberrypi.local:8080/save", { name: currentPatch, contents: doc.getValue() })
+    .done(function(data) {
+          alert(data);
+    });
+}
 
 $(document).ready(function() {
 
@@ -21,9 +43,15 @@ $(document).ready(function() {
         matchBrackets: true,
       });
 
-  var doc = editor.getDoc();
+    editor.setSize(1000, '100%');
+    doc = editor.getDoc();
 
     getPatch(doc, "treefill");
 
+    getPatchList();
+
+    $("#save").click(function() {
+        savePatch();
+    });
 
 });

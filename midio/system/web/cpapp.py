@@ -24,6 +24,14 @@ class Root():
     patch.exposed = True
 
 
+    def save(self, name, contents):
+        p = name
+        patch_path = '../../patches/'+p+'/'+p+'.py'
+        with open(patch_path, "w") as text_file:
+            text_file.write(contents)
+        return "SAVED " + name
+    save.exposed = True
+
     # returns list of all the patches
     def index(self):
         

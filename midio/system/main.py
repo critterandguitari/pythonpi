@@ -55,7 +55,6 @@ line = ''
 vsynth.clear_flags()
 
 while 1:
-
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
     if serialport.inWaiting() > 0:
@@ -86,7 +85,8 @@ while 1:
         #screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         screen.fill( (0,0,0)) 
         pygame.display.flip()
- 
+
+    vsynth.note_on = True
     patch.draw(screen, vsynth)
     pygame.display.flip()
 
