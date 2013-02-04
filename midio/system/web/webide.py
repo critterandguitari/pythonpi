@@ -3,6 +3,7 @@ import os
 import time
 import glob
 import json
+import urllib
 
 cherrypy.config.update({'server.socket_host': '0.0.0.0',
                         'server.socket_port': 80,
@@ -16,11 +17,16 @@ def get_immediate_subdirectories(dir) :
 
 class HelloWorld(object):
 
-    def foo(self, p):
-        return 'Foo!' + p
-    foo.exposed = True
+    # /patch/patch-name  loads patch
+    def patch(self, p):
+        patch_path = '../../patches/'+p+'/'+p+'.py'
+        patch = open(patch_path, 'r').read()
+        return patch
+    
+    patch.exposed = True
 
 
+    # returns list of all the patches
     def index(self):
         
         print "loading patches..."
@@ -30,11 +36,11 @@ class HelloWorld(object):
         for patch_folder in patch_folders :
             patch_name = str(patch_folder)
             patch_path = '../../patches/'+patch_name+'/'+patch_name+'.py'
-            patches.append(patch_path)
+            patches.append(urllib.quote(patch_name))
 
         return json.dumps(patches)
 
-        index.exposed = True
+    index.exposed = True
 
 root = HelloWorld()
 
