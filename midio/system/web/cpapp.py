@@ -1,16 +1,11 @@
-import cherrypy
+import os.path
+current_dir = os.path.dirname(os.path.abspath(__file__))
 import os
 import time
 import glob
 import json
+import cherrypy
 import urllib
-
-cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                        'server.socket_port': 80,
-                                              })
-
-
-
 
 def get_immediate_subdirectories(dir) :
     return [name for name in os.listdir(dir)
@@ -18,7 +13,7 @@ def get_immediate_subdirectories(dir) :
 
 
 
-class HelloWorld(object):
+class Root():
 
     # /patch/patch-name  loads patch
     def patch(self, p):
@@ -45,9 +40,4 @@ class HelloWorld(object):
 
     index.exposed = True
 
-root = HelloWorld()
 
-
-#root.foo = foo
-
-cherrypy.quickstart(root)

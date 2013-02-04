@@ -1,0 +1,298 @@
+[04/Feb/2013:04:10:43] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:10:43] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:10:43] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:10:43] ENGINE Bus STARTING
+[04/Feb/2013:04:10:43] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:10:43] ENGINE Serving on 127.0.0.1:8080
+[04/Feb/2013:04:10:43] ENGINE Bus STARTED
+[04/Feb/2013:04:11:06] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:11:06] ENGINE Bus STOPPING
+[04/Feb/2013:04:11:06] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 8080)) shut down
+[04/Feb/2013:04:11:06] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:11:06] ENGINE Bus STOPPED
+[04/Feb/2013:04:11:06] ENGINE Bus EXITING
+[04/Feb/2013:04:11:06] ENGINE Bus EXITED
+[04/Feb/2013:04:11:06] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:12:36] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:12:36] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:12:36] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:12:36] ENGINE Bus STARTING
+[04/Feb/2013:04:12:36] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:12:36] ENGINE Error in HTTP server: shutting down
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/process/servers.py", line 187, in _start_http_thread
+    self.httpserver.start()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/wsgiserver/wsgiserver2.py", line 1816, in start
+    self.bind(af, socktype, proto)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/wsgiserver/wsgiserver2.py", line 1882, in bind
+    self.socket.bind(self.bind_addr)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+TypeError: an integer is required
+
+[04/Feb/2013:04:12:36] ENGINE Bus STOPPING
+[04/Feb/2013:04:12:36] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', '8080')) already shut down
+[04/Feb/2013:04:12:36] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:12:36] ENGINE Bus STOPPED
+[04/Feb/2013:04:12:36] ENGINE Bus EXITING
+[04/Feb/2013:04:12:36] ENGINE Bus EXITED
+[04/Feb/2013:04:12:54] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:12:54] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:12:54] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:12:54] ENGINE Bus STARTING
+[04/Feb/2013:04:12:54] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:12:54] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:12:54] ENGINE Bus STARTED
+[04/Feb/2013:04:13:16] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:13:16] ENGINE Bus STOPPING
+[04/Feb/2013:04:13:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:13:21] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:13:21] ENGINE Bus STOPPED
+[04/Feb/2013:04:13:21] ENGINE Bus EXITING
+[04/Feb/2013:04:13:21] ENGINE Bus EXITED
+[04/Feb/2013:04:13:21] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:13:21] ENGINE Waiting for thread CP Server Thread-5.
+[04/Feb/2013:04:18:15] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:18:15] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:18:15] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:18:15] ENGINE Bus STARTING
+[04/Feb/2013:04:18:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:18:16] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:18:16] ENGINE Bus STARTED
+[04/Feb/2013:04:18:39]  Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 102, in run
+    hook()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 62, in __call__
+    return self.callback(**self.kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cptools.py", line 176, in _wrapper
+    if self.callable(**kwargs):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/static.py", line 296, in staticdir
+    raise ValueError(msg)
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:18:39] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 653, in respond
+    self.hooks.run('before_handler')
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 112, in run
+    raise exc
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:18:49]  Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 102, in run
+    hook()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 62, in __call__
+    return self.callback(**self.kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cptools.py", line 176, in _wrapper
+    if self.callable(**kwargs):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/static.py", line 296, in staticdir
+    raise ValueError(msg)
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:18:50] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 653, in respond
+    self.hooks.run('before_handler')
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 112, in run
+    raise exc
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:19:08]  Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 102, in run
+    hook()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 62, in __call__
+    return self.callback(**self.kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cptools.py", line 176, in _wrapper
+    if self.callable(**kwargs):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/static.py", line 296, in staticdir
+    raise ValueError(msg)
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:19:08] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 653, in respond
+    self.hooks.run('before_handler')
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 112, in run
+    raise exc
+ValueError: Static dir requires an absolute dir (or root).
+
+[04/Feb/2013:04:19:24] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:19:24] ENGINE Bus STOPPING
+[04/Feb/2013:04:19:24] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:19:24] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:19:24] ENGINE Bus STOPPED
+[04/Feb/2013:04:19:24] ENGINE Bus EXITING
+[04/Feb/2013:04:19:24] ENGINE Bus EXITED
+[04/Feb/2013:04:19:24] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:20:22] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:20:22] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:20:22] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:20:22] ENGINE Bus STARTING
+[04/Feb/2013:04:20:22] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:20:22] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:20:22] ENGINE Bus STARTED
+[04/Feb/2013:04:21:03] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:21:03] ENGINE Bus STOPPING
+[04/Feb/2013:04:21:04] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:21:04] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:21:04] ENGINE Bus STOPPED
+[04/Feb/2013:04:21:04] ENGINE Bus EXITING
+[04/Feb/2013:04:21:04] ENGINE Bus EXITED
+[04/Feb/2013:04:21:04] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:24:26] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:24:26] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:24:26] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:24:26] ENGINE Bus STARTING
+[04/Feb/2013:04:24:26] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:24:26] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:24:26] ENGINE Bus STARTED
+[04/Feb/2013:04:24:27] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 656, in respond
+    response.body = self.handler()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 188, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 34, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "cpapp.py", line 34, in index
+    patches.append(urllib.quote(patch_name))
+NameError: global name 'urllib' is not defined
+
+[04/Feb/2013:04:24:28] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 656, in respond
+    response.body = self.handler()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 188, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 34, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "cpapp.py", line 34, in index
+    patches.append(urllib.quote(patch_name))
+NameError: global name 'urllib' is not defined
+
+[04/Feb/2013:04:24:31] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 656, in respond
+    response.body = self.handler()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 188, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 34, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "cpapp.py", line 34, in index
+    patches.append(urllib.quote(patch_name))
+NameError: global name 'urllib' is not defined
+
+[04/Feb/2013:04:24:35] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:24:35] ENGINE Bus STOPPING
+[04/Feb/2013:04:24:36] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:24:36] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:24:36] ENGINE Bus STOPPED
+[04/Feb/2013:04:24:36] ENGINE Bus EXITING
+[04/Feb/2013:04:24:36] ENGINE Bus EXITED
+[04/Feb/2013:04:24:36] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:24:36] ENGINE Waiting for thread CP Server Thread-4.
+[04/Feb/2013:04:24:58] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:24:58] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:24:58] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:24:58] ENGINE Bus STARTING
+[04/Feb/2013:04:24:58] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:24:58] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:24:58] ENGINE Bus STARTED
+[04/Feb/2013:04:24:58] HTTP Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 656, in respond
+    response.body = self.handler()
+  File "/usr/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 188, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 34, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "cpapp.py", line 36, in index
+    return json.dumps(patches)
+NameError: global name 'json' is not defined
+
+[04/Feb/2013:04:25:02] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:25:02] ENGINE Bus STOPPING
+[04/Feb/2013:04:25:06] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:25:06] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:25:06] ENGINE Bus STOPPED
+[04/Feb/2013:04:25:06] ENGINE Bus EXITING
+[04/Feb/2013:04:25:06] ENGINE Bus EXITED
+[04/Feb/2013:04:25:06] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:25:06] ENGINE Waiting for thread CP Server Thread-4.
+[04/Feb/2013:04:25:39] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:25:39] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:25:39] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:25:39] ENGINE Bus STARTING
+[04/Feb/2013:04:25:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:25:39] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:25:39] ENGINE Bus STARTED
+[04/Feb/2013:04:25:44] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:25:44] ENGINE Bus STOPPING
+[04/Feb/2013:04:25:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:25:48] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:25:48] ENGINE Bus STOPPED
+[04/Feb/2013:04:25:48] ENGINE Bus EXITING
+[04/Feb/2013:04:25:48] ENGINE Bus EXITED
+[04/Feb/2013:04:25:48] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:25:48] ENGINE Waiting for thread CP Server Thread-4.
+[04/Feb/2013:04:26:01] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:26:01] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:26:01] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:26:01] ENGINE Bus STARTING
+[04/Feb/2013:04:26:01] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:26:01] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:26:01] ENGINE Bus STARTED
+[04/Feb/2013:04:26:05] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:26:05] ENGINE Bus STOPPING
+[04/Feb/2013:04:26:10] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:26:10] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:26:10] ENGINE Bus STOPPED
+[04/Feb/2013:04:26:10] ENGINE Bus EXITING
+[04/Feb/2013:04:26:10] ENGINE Bus EXITED
+[04/Feb/2013:04:26:10] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:26:10] ENGINE Waiting for thread CP Server Thread-9.
+[04/Feb/2013:04:27:09] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:27:09] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:27:09] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:27:09] ENGINE Bus STARTING
+[04/Feb/2013:04:27:09] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:27:09] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:27:09] ENGINE Bus STARTED
+[04/Feb/2013:04:27:33] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:27:33] ENGINE Bus STOPPING
+[04/Feb/2013:04:27:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:27:33] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:27:33] ENGINE Bus STOPPED
+[04/Feb/2013:04:27:33] ENGINE Bus EXITING
+[04/Feb/2013:04:27:33] ENGINE Bus EXITED
+[04/Feb/2013:04:27:33] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:29:02] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:29:02] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:29:02] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:29:02] ENGINE Bus STARTING
+[04/Feb/2013:04:29:02] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:29:02] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:29:02] ENGINE Bus STARTED
+[04/Feb/2013:04:29:25] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:29:25] ENGINE Bus STOPPING
+[04/Feb/2013:04:29:25] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:29:25] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:29:25] ENGINE Bus STOPPED
+[04/Feb/2013:04:29:25] ENGINE Bus EXITING
+[04/Feb/2013:04:29:25] ENGINE Bus EXITED
+[04/Feb/2013:04:29:25] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:30:00] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:30:00] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:30:00] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:30:00] ENGINE Bus STARTING
+[04/Feb/2013:04:30:00] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:30:00] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:30:00] ENGINE Bus STARTED
+[04/Feb/2013:04:30:10] ENGINE Keyboard Interrupt: shutting down bus
+[04/Feb/2013:04:30:10] ENGINE Bus STOPPING
+[04/Feb/2013:04:30:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[04/Feb/2013:04:30:14] ENGINE Stopped thread '_TimeoutMonitor'.
+[04/Feb/2013:04:30:14] ENGINE Bus STOPPED
+[04/Feb/2013:04:30:14] ENGINE Bus EXITING
+[04/Feb/2013:04:30:14] ENGINE Bus EXITED
+[04/Feb/2013:04:30:14] ENGINE Waiting for child threads to terminate...
+[04/Feb/2013:04:30:34] ENGINE Listening for SIGHUP.
+[04/Feb/2013:04:30:34] ENGINE Listening for SIGTERM.
+[04/Feb/2013:04:30:34] ENGINE Listening for SIGUSR1.
+[04/Feb/2013:04:30:34] ENGINE Bus STARTING
+[04/Feb/2013:04:30:34] ENGINE Started monitor thread '_TimeoutMonitor'.
+[04/Feb/2013:04:30:35] ENGINE Serving on 0.0.0.0:8080
+[04/Feb/2013:04:30:35] ENGINE Bus STARTED
