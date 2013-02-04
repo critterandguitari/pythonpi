@@ -4,7 +4,6 @@ import time
 import random
 import glob
 
-
 images = []
 image_index = 0
 count = 0
