@@ -7,7 +7,17 @@ import fullfb
 import glob
 import hardware
 import imp
+import socket
 
+# setup a UDP socket for recivinng data from other programs
+UDP_IP = "127.0.0.1"
+UDP_PORT = 5005
+sock = socket.socket(socket.AF_INET, # Internet
+                     socket.SOCK_DGRAM) # UDP
+sock.bind((UDP_IP, UDP_PORT))
+sock.setblocking(0)
+
+# TODO :  make helper module, include functions like these :
 def get_immediate_subdirectories(dir):
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
@@ -57,7 +67,7 @@ vsynth.clear_flags()
 while 1:
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
-    if serialport.inWaiting() > 0:
+    if False: #serialport.inWaiting() > 0:
         buf = buf + serialport.read(serialport.inWaiting())
         if '\n' in buf :
             lines = buf.split('\n')
@@ -66,7 +76,18 @@ while 1:
             #line = lines[-2]
             buf = lines[-1]
 
-
+    # ... or parse lines from UDP instead
+    try :
+        data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+        buf = buf + data
+        if '\n' in buf :
+            lines = buf.split('\n')
+            for l in lines :
+                vsynth.parse_serial(l)
+                print l
+            buf = lines[-1]
+    except :
+        pass
 
 
     if vsynth.next_patch: 
