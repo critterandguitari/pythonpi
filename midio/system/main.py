@@ -8,6 +8,7 @@ import glob
 import hardware
 import imp
 import socket
+import traceback
 import sys
 
 # setup a UDP socket for recivinng data from other programs
@@ -43,9 +44,8 @@ for patch_folder in patch_folders :
     print patch_path
     try :
         patches.append(imp.load_source(patch_name, patch_path))
-    except SyntaxError :
-        print "module " + patch_path +" has syntax erros, skipping"
-
+    except Exception, e:
+        print traceback.format_exc()
 
 # set initial patch
 patch = None 
@@ -136,9 +136,11 @@ while 1:
         patch_path = '../patches/'+patch_name+'/'+patch_name+'.py'
         try :
             patch = imp.load_source(patch_name, patch_path)
-        except SyntaxError:
-            print "Syntax Error, Fix It"
-        print "reloaded"
+            print "reloaded"
+        except Exception, e:
+            formatted_lines = traceback.format_exc().splitlines()
+            print formatted_lines[-3]
+            print formatted_lines[-1]
     
     
     vsynth.note_on = True
@@ -146,7 +148,7 @@ while 1:
     try :
         patch.draw(screen, vsynth)
     except Exception, e:
-        print "error calling draw: %s" % e
+        print traceback.format_exc()
     
     pygame.display.flip()
 

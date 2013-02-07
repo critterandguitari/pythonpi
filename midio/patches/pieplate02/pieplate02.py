@@ -34,13 +34,13 @@ def draw(screen, vsynth):
 			arcend=random.randrange(0, 360-arcstart)
 			for i in range(fanrange):
 				pygame.gfxdraw.pie(screen, screen.get_width()/2, screen.get_height()/2, screen.get_height() - (count*screen.get_height()/nestrange), arcstart + i*fanrange, arcend - i*fanrange, color)
-				#pygame.gfxdraw.pie(screen, screen.get_width()/2, screen.get_height()/2, (nestrange-count)*, arcstart + i*fanrange, arcend - i*fanrange, color)
+
+                #pygame.gfxdraw.pie(screen, screen.get_width()/2, screen.get_height()/2, (nestrange-count)*, arcstart + i*fanrange, arcend - i*fanrange, color)
 #			time.sleep(.05)
 			pygame.display.flip() #updates the display surface
 		screen.fill((0,0,0))
 #		pygame.gfxdraw.pie(screen, x, y, pierad, 5, 50, color)
 #        pygame.draw.circle(screen,color,[x,y],size, 0)
 #        pygame.gfxdraw.aacircle(screen, x, y, size, color)
-#        pygame.gfxdraw.filled_circle(screen, x, y, size, color)
 
 #pgyame.gfxdraw.pie(surface, x, y, radius, arcstart, arcend, color): return None

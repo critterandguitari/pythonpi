@@ -1,10 +1,10 @@
-doc = null
+editor = null
 currentPatch = ''
 
 
 function getPatch(patch) {
     $.get('http://raspberrypi.local:8080/get_patch/' + patch, function(data) {
-        doc.setValue(data);
+        editor.setValue(data);
         currentPatch = patch
     });
 }
@@ -17,41 +17,30 @@ function getPatchList() {
             $patch.click(function () {
                 getPatch(v);
             });
-           $("#owen").append($patch);
+           $("#patches").append($patch);
         });
     });
 }
 
 function savePatch() {
     
-    $.post("http://raspberrypi.local:8080/save", { name: currentPatch, contents: doc.getValue() })
+    $.post("http://raspberrypi.local:8080/save", { name: currentPatch, contents: editor.getValue() })
     .done(function(data) {
-          alert(data);
+         // alert(data);
     });
 }
 
 $(document).ready(function() {
-
-
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: {name: "python",
-               version: 2,
-               singleLineStringErrors: true},
-        lineNumbers: true,
-        indentUnit: 4,
-        tabMode: "shift",
-        matchBrackets: true,
-      });
-
-    editor.setSize(1000, '100%');
-    doc = editor.getDoc();
-
-    getPatch(doc, "treefill");
-
+    
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/merbivore_soft");
+    editor.getSession().setMode("ace/mode/python");
+    //$("#editor").style.fontSize='16px';
+    document.getElementById('editor').style.fontSize='16px';
     getPatchList();
 
     $("#save").click(function() {
-        savePatch();
+        savePatch(editor);
     });
 
 });
