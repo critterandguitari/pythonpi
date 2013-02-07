@@ -8,6 +8,7 @@ import glob
 import hardware
 import imp
 import socket
+import sys
 
 # setup a UDP socket for recivinng data from other programs
 UDP_IP = "127.0.0.1"
@@ -30,6 +31,8 @@ serialport = serial.Serial("/dev/ttyAMA0", 115200)
 print "opening frame buffer"
 screen = fullfb.init()
 
+
+# TODO :  don't make a list of moduels, just make a list of their names, and select them from  sys.modules
 print "loading patches..."
 patches = []
 patch_folders = get_immediate_subdirectories('../patches/')
@@ -38,7 +41,11 @@ for patch_folder in patch_folders :
     patch_name = str(patch_folder)
     patch_path = '../patches/'+patch_name+'/'+patch_name+'.py'
     print patch_path
-    patches.append(imp.load_source(patch_name, patch_path))
+    try :
+        patches.append(imp.load_source(patch_name, patch_path))
+    except SyntaxError :
+        print "module " + patch_path +" has syntax erros, skipping"
+
 
 # set initial patch
 patch = None 
@@ -67,13 +74,12 @@ vsynth.clear_flags()
 while 1:
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
-    if False: #serialport.inWaiting() > 0:
+    if serialport.inWaiting() > 0:
         buf = buf + serialport.read(serialport.inWaiting())
         if '\n' in buf :
             lines = buf.split('\n')
             for l in lines :
                 vsynth.parse_serial(l)
-            #line = lines[-2]
             buf = lines[-1]
 
     # ... or parse lines from UDP instead
@@ -84,16 +90,17 @@ while 1:
             lines = buf.split('\n')
             for l in lines :
                 vsynth.parse_serial(l)
-                print l
+     #           print l
             buf = lines[-1]
     except :
         pass
 
 
+    # TODO :  update this to use sys.modules (see above, and below...)
     if vsynth.next_patch: 
         num += 1
         if num == len(patches) : num = 0
-        patch = patches[num]
+#        patch = patches[num]
 
 
     if vsynth.quarter_note : 
@@ -108,7 +115,39 @@ while 1:
         pygame.display.flip()
 
     vsynth.note_on = True
-    patch.draw(screen, vsynth)
+
+    # set patch
+    # TODO: setup has to be called too (maybe )
+    if vsynth.set_patch :
+        print "setting: " + vsynth.patch
+        try :
+            patch = sys.modules[vsynth.patch]
+        except KeyError:
+            print "Module " +vsynth.patch+ " is not loaded, probably it has errors"
+
+    # reload
+    # TODO: setup has to be called too
+    if vsynth.reload_patch :
+        # delete the old
+        if vsynth.patch in sys.modules:  
+            del(sys.modules[vsynth.patch]) 
+        print "deleted module, reloading"
+        patch_name = vsynth.patch
+        patch_path = '../patches/'+patch_name+'/'+patch_name+'.py'
+        try :
+            patch = imp.load_source(patch_name, patch_path)
+        except SyntaxError:
+            print "Syntax Error, Fix It"
+        print "reloaded"
+    
+    
+    vsynth.note_on = True
+    
+    try :
+        patch.draw(screen, vsynth)
+    except Exception, e:
+        print "error calling draw: %s" % e
+    
     pygame.display.flip()
 
     # clear all the events

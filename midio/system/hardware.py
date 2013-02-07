@@ -1,7 +1,6 @@
 
 class HardwareInput:
     
-    next_patch = False
     knob1 = 200
     knob2 = 200
     knob3 = 200
@@ -29,10 +28,20 @@ class HardwareInput:
     note_ch = 1
     note_velocity = 0
     note_note = 60
-    
+
+    #patch interface
+    next_patch = False
+    set_patch = False
+    reload_patch = False
+    patch = ''
+
     def parse_serial(self, line):
         array = line.split(',')
         #print array
+ 
+        if len (array) == 1:
+            if array[0] == "rlp": 
+                self.reload_patch = True
  
         # basic parse sd key (this is supposed to be mapped to shutdowh -h now)
         if len (array) == 1:
@@ -71,6 +80,11 @@ class HardwareInput:
 
                 self.whole_note_count += 1
                 if self.whole_note_count == 96 : self.midi_clk_count = 0
+
+        if len(array) == 2 :
+            if array[0] == "setpatch" :
+                self.set_patch = True
+                self.patch = array[1]
 
 
         # basic parse of knob array
@@ -121,6 +135,9 @@ class HardwareInput:
         self.thirtysecond_note = False
         self.half_note = False
         self.whole_note = False
+        self.next_patch = False
+        self.set_patch = False
+        self.reload_patch = False
 
 
 

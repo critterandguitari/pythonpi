@@ -1,6 +1,5 @@
 import os.path
 current_dir = os.path.dirname(os.path.abspath(__file__))
-import os
 import time
 import glob
 import json
@@ -32,23 +31,27 @@ def get_immediate_subdirectories(dir) :
 class Root():
 
     # /patch/patch-name  loads patch
-    def patch(self, p):
+    def get_patch(self, p):
         patch_path = '../../patches/'+p+'/'+p+'.py'
         patch = open(patch_path, 'r').read()
+        self.send_command("setpatch," + p + "\n")
         return patch
-    
-    patch.exposed = True
+    get_patch.exposed = True
 
+    def send_command(self, data):
+        global sock
+        sock.sendto(data, (UDP_IP, UDP_PORT))
+    send_command.exposed = True
 
     def save(self, name, contents):
+        #save the patch
         p = name
-       # patch_path = '../../patches/'+p+'/'+p+'.py'
-       # with open(patch_path, "w") as text_file:
-       #     text_file.write(contents)
-       # return "SAVED " + name
-        
-        global sock
-        sock.sendto(contents, (UDP_IP, UDP_PORT))
+        patch_path = '../../patches/'+p+'/'+p+'.py'
+        with open(patch_path, "w") as text_file:
+            text_file.write(contents)
+        #then send reload command
+        self.send_command("rlp\n")
+        return "SAVED " + name
     save.exposed = True
 
     # returns list of all the patches

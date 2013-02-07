@@ -3,7 +3,7 @@ currentPatch = ''
 
 
 function getPatch(patch) {
-    $.get('http://raspberrypi.local:8080/patch/' + patch, function(data) {
+    $.get('http://raspberrypi.local:8080/get_patch/' + patch, function(data) {
         doc.setValue(data);
         currentPatch = patch
     });

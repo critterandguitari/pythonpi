@@ -9,14 +9,16 @@ def setup():
 
 def draw(screen, vsynth):
     if vsynth.quarter_note :
-        color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+        #color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+        color = (random.randrange(0,25), random.randrange(0,25), random.randrange(0,25))
+
         screen.fill(color) 
           
 
     if vsynth.note_on :
-        x=random.randrange(0,700)
-        y=random.randrange(0,400)
-        size = vsynth.knob2
+        x=random.randrange(0,70)  + vsynth.knob2 // 2
+        y=random.randrange(0,40)  + vsynth.knob3 // 2
+        size = vsynth.knob1
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
         #color = pygame.Color.hsva( (float(vsynth.knob3) / 1024) * 360, 100, 100, 50)#(random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
         #color = Color.hsva( 20, 100, 100, 50)#(random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
