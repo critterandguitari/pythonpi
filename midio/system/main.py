@@ -11,6 +11,25 @@ import socket
 import traceback
 import sys
 
+from pygame.locals import *
+
+
+pygame.init()
+
+# set up the colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+OSDBG = (0,0,255, 100)
+
+# OSD stuff
+font = pygame.font.SysFont(None, 32)
+notemsg = font.render('...', True, WHITE, OSDBG)
+
+
+
 # setup a UDP socket for recivinng data from other programs
 UDP_IP = "127.0.0.1"
 UDP_PORT = 5005
@@ -71,6 +90,9 @@ line = ''
 
 vsynth.clear_flags()
 
+error = ''
+
+
 while 1:
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
@@ -122,8 +144,9 @@ while 1:
         print "setting: " + vsynth.patch
         try :
             patch = sys.modules[vsynth.patch]
+            error = ''
         except KeyError:
-            print "Module " +vsynth.patch+ " is not loaded, probably it has errors"
+            error = "Module " +vsynth.patch+ " is not loaded, probably it has errors"
 
     # reload
     # TODO: setup has to be called too
@@ -136,20 +159,55 @@ while 1:
         patch_path = '../patches/'+patch_name+'/'+patch_name+'.py'
         try :
             patch = imp.load_source(patch_name, patch_path)
+            error = ''
             print "reloaded"
         except Exception, e:
-            formatted_lines = traceback.format_exc().splitlines()
-            print formatted_lines[-3]
-            print formatted_lines[-1]
+            error = traceback.format_exc()
+          #  formatted_lines = traceback.format_exc().splitlines()
+          #  print formatted_lines[-3]
+          #  print formatted_lines[-1]
     
     
     vsynth.note_on = True
     
     try :
         patch.draw(screen, vsynth)
+        #error = ''
     except Exception, e:
-        print traceback.format_exc()
+        #print traceback.format_exc()
+        error = traceback.format_exc()
+
     
+    # osd
+    pygame.draw.rect(screen, OSDBG, (0, screen.get_height() - 40, screen.get_width(), 40))
+    font = pygame.font.SysFont(None, 32)
+    text = font.render('patch: ' + str(patch.__name__), True, WHITE, OSDBG)
+    text_rect = text.get_rect()
+    text_rect.x = 50
+    text_rect.centery = screen.get_height() - 20
+    screen.blit(text, text_rect)
+   
+    if vsynth.note_on :
+        notemsg = font.render('note on', True, WHITE, OSDBG)
+    
+    text_rect = notemsg.get_rect()
+    text_rect.x = screen.get_width() - 100
+    text_rect.centery = screen.get_height() - 20
+    screen.blit(notemsg, text_rect)
+
+    # osd, errors
+    i = 0
+    for errorline in error.splitlines() :
+        errormsg = font.render(errorline, True, WHITE, RED) 
+        text_rect = notemsg.get_rect()
+        text_rect.x = 50
+        text_rect.y = 20 + (i * 32)
+        screen.blit(errormsg, text_rect)
+        i += 1
+
+   
+
+
     pygame.display.flip()
 
     # clear all the events

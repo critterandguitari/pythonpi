@@ -4,8 +4,10 @@ currentPatch = ''
 
 function getPatch(patch) {
     $.get('http://raspberrypi.local:8080/get_patch/' + patch, function(data) {
-        editor.setValue(data);
+        editor.setValue(data)
+        editor.gotoLine(1)
         currentPatch = patch
+        $("#title").html(patch)
     });
 }
 
@@ -36,7 +38,7 @@ $(document).ready(function() {
     editor.setTheme("ace/theme/merbivore_soft");
     editor.getSession().setMode("ace/mode/python");
     //$("#editor").style.fontSize='16px';
-    document.getElementById('editor').style.fontSize='16px';
+    document.getElementById('editor').style.fontSize='14px';
     getPatchList();
 
     $("#save").click(function() {

@@ -807,3 +807,46 @@ IOError: [Errno 2] No such file or directory: '../../patches/[object Object]/[ob
 [07/Feb/2013:19:12:04] ENGINE Started monitor thread '_TimeoutMonitor'.
 [07/Feb/2013:19:12:04] ENGINE Serving on 0.0.0.0:8080
 [07/Feb/2013:19:12:04] ENGINE Bus STARTED
+[07/Feb/2013:21:37:13] ENGINE Listening for SIGHUP.
+[07/Feb/2013:21:37:13] ENGINE Listening for SIGTERM.
+[07/Feb/2013:21:37:13] ENGINE Listening for SIGUSR1.
+[07/Feb/2013:21:37:13] ENGINE Bus STARTING
+[07/Feb/2013:21:37:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Feb/2013:21:37:14] ENGINE Serving on 0.0.0.0:8080
+[07/Feb/2013:21:37:14] ENGINE Bus STARTED
+[07/Feb/2013:00:38:53] ENGINE Listening for SIGHUP.
+[07/Feb/2013:00:38:54] ENGINE Listening for SIGTERM.
+[07/Feb/2013:00:38:54] ENGINE Listening for SIGUSR1.
+[07/Feb/2013:00:38:54] ENGINE Bus STARTING
+[07/Feb/2013:00:38:54] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Feb/2013:00:38:54] ENGINE Serving on 0.0.0.0:8080
+[07/Feb/2013:00:38:54] ENGINE Bus STARTED
+[07/Feb/2013:00:38:37] ENGINE Listening for SIGHUP.
+[07/Feb/2013:00:38:37] ENGINE Listening for SIGTERM.
+[07/Feb/2013:00:38:37] ENGINE Listening for SIGUSR1.
+[07/Feb/2013:00:38:37] ENGINE Bus STARTING
+[07/Feb/2013:00:38:37] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Feb/2013:23:00:08] ENGINE Serving on 0.0.0.0:8080
+[07/Feb/2013:23:00:08] ENGINE Bus STARTED
+[07/Feb/2013:00:38:40] ENGINE Listening for SIGHUP.
+[07/Feb/2013:00:38:40] ENGINE Listening for SIGTERM.
+[07/Feb/2013:00:38:40] ENGINE Listening for SIGUSR1.
+[07/Feb/2013:00:38:40] ENGINE Bus STARTING
+[07/Feb/2013:00:38:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Feb/2013:00:38:40] ENGINE Serving on 0.0.0.0:8080
+[07/Feb/2013:00:38:40] ENGINE Bus STARTED
+[08/Feb/2013:02:38:16] ENGINE Caught signal SIGTERM.
+[08/Feb/2013:02:38:16] ENGINE Bus STOPPING
+[08/Feb/2013:02:38:16] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8080)) shut down
+[08/Feb/2013:02:38:16] ENGINE Stopped thread '_TimeoutMonitor'.
+[08/Feb/2013:02:38:16] ENGINE Bus STOPPED
+[08/Feb/2013:02:38:16] ENGINE Bus EXITING
+[08/Feb/2013:02:38:16] ENGINE Bus EXITED
+[08/Feb/2013:02:38:16] ENGINE Waiting for child threads to terminate...
+[08/Feb/2013:02:38:40] ENGINE Listening for SIGHUP.
+[08/Feb/2013:02:38:40] ENGINE Listening for SIGTERM.
+[08/Feb/2013:02:38:40] ENGINE Listening for SIGUSR1.
+[08/Feb/2013:02:38:40] ENGINE Bus STARTING
+[08/Feb/2013:02:38:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[08/Feb/2013:02:38:40] ENGINE Serving on 0.0.0.0:8080
+[08/Feb/2013:02:38:40] ENGINE Bus STARTED

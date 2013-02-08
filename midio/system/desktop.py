@@ -7,6 +7,7 @@ import fullfb
 import glob
 import hardware
 import imp
+import sys
 
 from pygame.locals import *
 
@@ -61,6 +62,17 @@ line = ''
 
 #vsynth.clear_flags()
 
+# set up the colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+OSDBG = (0,0,255, 100)
+
+font = pygame.font.SysFont(None, 24)
+notemsg = font.render('...', True, WHITE, OSDBG)
+
 while 1:
 
     for event in pygame.event.get():
@@ -74,7 +86,9 @@ while 1:
                 vsynth.clear_screen = True
             if pygame.key.get_pressed()[K_RIGHT]:
                 vsynth.next_patch = True
-
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
 
     #print serialport.inWaiting()    
     # get serial line and parse it, TODO hmmm could this miss lines?  (only parses most recent, but there could be more in serial buffer)
@@ -88,8 +102,28 @@ while 1:
         screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         #screen.fill( (0,0,0)) 
         pygame.display.flip()
- 
+
+
     patch.draw(screen, vsynth)
+    
+    #osd
+    pygame.draw.rect(screen, OSDBG, (0, screen.get_height() - 40, screen.get_width(), 40))
+    font = pygame.font.SysFont(None, 24)
+    text = font.render('patch: ' + str(patch.__name__), True, WHITE, OSDBG)
+    text_rect = text.get_rect()
+    text_rect.x = 50
+    text_rect.centery = screen.get_height() - 20
+    screen.blit(text, text_rect)
+   
+    if vsynth.note_on :
+        notemsg = font.render('note on', True, WHITE, OSDBG)
+    
+    text_rect = notemsg.get_rect()
+    text_rect.x = screen.get_width() - 100
+    text_rect.centery = screen.get_height() - 20
+    screen.blit(notemsg, text_rect)
+
+    
     pygame.display.flip()
 
     # clear all the events

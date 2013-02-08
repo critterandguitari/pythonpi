@@ -18,7 +18,7 @@ def draw(screen, vsynth):
 		arcstart=random.randrange(0,360)
 		arcend=random.randrange(0, 360-arcstart)
 		size = vsynth.knob2
-		color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
+		color = (random.randrange(254,255), random.randrange(100,255), random.randrange(0,255))
 		width = vsynth.knob1 // 50
 		if width == 0 : width = 1
 		if width > size : width = size 

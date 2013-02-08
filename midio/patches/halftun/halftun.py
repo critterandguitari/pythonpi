@@ -5,7 +5,6 @@ import random
 import pygame.gfxdraw
 
 bg = pygame.Surface((656,416))
-
 def setup():
     print "setting up random pies ..."
 
