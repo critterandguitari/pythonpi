@@ -35,6 +35,8 @@ class HardwareInput:
     reload_patch = False
     patch = ''
 
+    quit = False
+
     osd = False
     
     def parse_serial(self, line):
@@ -52,6 +54,10 @@ class HardwareInput:
                 else :
                     self.osd = True
 
+  
+        if len (array) == 1:
+            if array[0] == "quit": 
+                self.quit = True
  
         if len (array) == 1:
             if array[0] == "cs": 

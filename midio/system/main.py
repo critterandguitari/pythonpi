@@ -167,7 +167,6 @@ while 1:
           #  print formatted_lines[-3]
           #  print formatted_lines[-1]
     
-    
     vsynth.note_on = True
     
     try :
@@ -211,6 +210,9 @@ while 1:
 
     pygame.display.flip()
 
+    if vsynth.quit :
+        sys.exit()
+    
     # clear all the events
     vsynth.clear_flags()
     #time.sleep(.01)

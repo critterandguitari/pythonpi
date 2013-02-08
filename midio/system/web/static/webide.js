@@ -61,6 +61,12 @@ $(document).ready(function() {
         sendCmd("osd\n");
     });
 
+    $("#quit").click(function() {
+        sendCmd("quit\n");
+    });
+
+
+
 
     $("#save").click(function() {
         savePatch(editor);
