@@ -10,7 +10,7 @@ def setup():
 def draw(screen, vsynth):
 	if vsynth.half_note: 
 		screen.fill((0,0,0))
-			
+	
 	if vsynth.note_on:
 		x=random.randrange(0,700)
 		y=random.randrange(0,400)

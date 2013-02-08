@@ -1,6 +1,12 @@
 editor = null
 currentPatch = ''
 
+function sendCmd(cmd) {
+    $.post("http://raspberrypi.local:8080/send_command", { data: cmd })
+    .done(function(data) {
+         // alert(data);
+    });
+}
 
 function getPatch(patch) {
     $.get('http://raspberrypi.local:8080/get_patch/' + patch, function(data) {
@@ -15,7 +21,7 @@ function getPatchList() {
      $.getJSON('http://raspberrypi.local:8080', function(data) {
         $.each(data, function (i,v) {
           
-            $patch = $('<div></div>').append(v);
+            $patch = $('<div class="side-button"></div>').append(v);
             $patch.click(function () {
                 getPatch(v);
             });
@@ -40,6 +46,21 @@ $(document).ready(function() {
     //$("#editor").style.fontSize='16px';
     document.getElementById('editor').style.fontSize='14px';
     getPatchList();
+
+    $("#clear-screen").click(function() {
+        sendCmd("cs\n");
+    });
+
+
+    $("#reload-patch").click(function() {
+        sendCmd("rlp\n");
+    });
+
+
+    $("#osd-toggle").click(function() {
+        sendCmd("osd\n");
+    });
+
 
     $("#save").click(function() {
         savePatch(editor);

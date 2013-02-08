@@ -22,7 +22,7 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
-OSDBG = (0,0,255, 100)
+OSDBG = (0,0,255)
 
 # OSD stuff
 font = pygame.font.SysFont(None, 32)
@@ -179,33 +179,34 @@ while 1:
 
     
     # osd
-    pygame.draw.rect(screen, OSDBG, (0, screen.get_height() - 40, screen.get_width(), 40))
-    font = pygame.font.SysFont(None, 32)
-    text = font.render('patch: ' + str(patch.__name__), True, WHITE, OSDBG)
-    text_rect = text.get_rect()
-    text_rect.x = 50
-    text_rect.centery = screen.get_height() - 20
-    screen.blit(text, text_rect)
-   
-    if vsynth.note_on :
-        notemsg = font.render('note on', True, WHITE, OSDBG)
-    
-    text_rect = notemsg.get_rect()
-    text_rect.x = screen.get_width() - 100
-    text_rect.centery = screen.get_height() - 20
-    screen.blit(notemsg, text_rect)
-
-    # osd, errors
-    i = 0
-    for errorline in error.splitlines() :
-        errormsg = font.render(errorline, True, WHITE, RED) 
-        text_rect = notemsg.get_rect()
+    if vsynth.osd :
+        pygame.draw.rect(screen, OSDBG, (0, screen.get_height() - 40, screen.get_width(), 40))
+        font = pygame.font.SysFont(None, 32)
+        text = font.render('patch: ' + str(patch.__name__), True, WHITE, OSDBG)
+        text_rect = text.get_rect()
         text_rect.x = 50
-        text_rect.y = 20 + (i * 32)
-        screen.blit(errormsg, text_rect)
-        i += 1
+        text_rect.centery = screen.get_height() - 20
+        screen.blit(text, text_rect)
+       
+        if vsynth.note_on :
+            notemsg = font.render('note on', True, WHITE, OSDBG)
+        
+        text_rect = notemsg.get_rect()
+        text_rect.x = screen.get_width() - 100
+        text_rect.centery = screen.get_height() - 20
+        screen.blit(notemsg, text_rect)
 
-   
+        # osd, errors
+        i = 0
+        for errorline in error.splitlines() :
+            errormsg = font.render(errorline, True, WHITE, RED) 
+            text_rect = notemsg.get_rect()
+            text_rect.x = 50
+            text_rect.y = 20 + (i * 32)
+            screen.blit(errormsg, text_rect)
+            i += 1
+
+       
 
 
     pygame.display.flip()

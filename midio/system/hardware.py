@@ -35,6 +35,8 @@ class HardwareInput:
     reload_patch = False
     patch = ''
 
+    osd = False
+    
     def parse_serial(self, line):
         array = line.split(',')
         #print array
@@ -42,6 +44,18 @@ class HardwareInput:
         if len (array) == 1:
             if array[0] == "rlp": 
                 self.reload_patch = True
+  
+        if len (array) == 1:
+            if array[0] == "osd": 
+                if self.osd :
+                    self.osd = False
+                else :
+                    self.osd = True
+
+ 
+        if len (array) == 1:
+            if array[0] == "cs": 
+                self.clear_screen = True
  
         # basic parse sd key (this is supposed to be mapped to shutdowh -h now)
         if len (array) == 1:

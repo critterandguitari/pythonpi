@@ -11,7 +11,6 @@ def draw(screen, vsynth):
     if vsynth.quarter_note :
         #color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
         color = (random.randrange(0,25), random.randrange(0,25), random.randrange(0,25))
-
         screen.fill(color) 
           
 

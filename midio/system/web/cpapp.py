@@ -19,14 +19,9 @@ print "UDP target port:", UDP_PORT
 sock = socket.socket(socket.AF_INET, # Internet
                      socket.SOCK_DGRAM) # UDP
 
-
-
-
 def get_immediate_subdirectories(dir) :
     return [name for name in os.listdir(dir)
             if os.path.isdir(os.path.join(dir, name))]
-
-
 
 class Root():
 
