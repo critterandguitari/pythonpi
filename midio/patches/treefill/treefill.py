@@ -38,7 +38,7 @@ def draw(screen, vsynth):
         count += 1
         if count > 8 :
             count = 0
-            screen.fill((0,0,0))
+        
             image_index += 1
             if image_index == len(images) : image_index = 0
         image = images[image_index]
