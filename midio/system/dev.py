@@ -54,23 +54,23 @@ class HardwareInput:
     def clear_flags(self):
         return 
 
-vsynth = HardwareInput()
+mvp = HardwareInput()
 
-vsynth.size = 1
+mvp.size = 1
 
 while 1:
 
     time.sleep(.02)
-    vsynth.size += 1
-    if vsynth.size > 250 :
-        vsynth.size = 0
+    mvp.size += 1
+    if mvp.size > 250 :
+        mvp.size = 0
         num += 1
         if num == len(patches) : num = 0
         patch = patches[num]
 
 
 
-    patch.draw(screen, vsynth)
+    patch.draw(screen, mvp)
     pygame.display.flip()
    
 

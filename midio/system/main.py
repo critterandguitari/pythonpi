@@ -72,6 +72,7 @@ num = 0
 patch = patches[num]
 
 # run setup functions if patches have them
+# TODO: setup needs to get passed screen for things like setting sizes
 for patch in patches :
     try :
         patch.setup()
@@ -82,13 +83,13 @@ for patch in patches :
 # flush serial port
 serialport.flushInput()
 
-#create vsynth object
-vsynth = hardware.HardwareInput()
+#create mvp object
+mvp = hardware.HardwareInput()
 
 buf = ''
 line = ''
 
-vsynth.clear_flags()
+mvp.clear_flags()
 
 error = ''
 
@@ -101,7 +102,7 @@ while 1:
         if '\n' in buf :
             lines = buf.split('\n')
             for l in lines :
-                vsynth.parse_serial(l)
+                mvp.parse_serial(l)
             buf = lines[-1]
 
     # ... or parse lines from UDP instead
@@ -111,7 +112,7 @@ while 1:
         if '\n' in buf :
             lines = buf.split('\n')
             for l in lines :
-                vsynth.parse_serial(l)
+                mvp.parse_serial(l)
      #           print l
             buf = lines[-1]
     except :
@@ -119,43 +120,43 @@ while 1:
 
 
     # TODO :  update this to use sys.modules (see above, and below...)
-    if vsynth.next_patch: 
+    if mvp.next_patch: 
         num += 1
         if num == len(patches) : num = 0
 #        patch = patches[num]
 
 
-    if vsynth.quarter_note : 
+    if mvp.quarter_note : 
 #        screen.fill ((0,0,0))
 #        pygame.display.flip()
         print "some note" 
 
 
-    if vsynth.clear_screen:
+    if mvp.clear_screen:
         #screen.fill( (random.randint(0,255), random.randint(0,255), random.randint(0,255))) 
         screen.fill( (0,0,0)) 
         pygame.display.flip()
 
-    vsynth.note_on = True
+    mvp.note_on = True
 
     # set patch
     # TODO: setup has to be called too (maybe )
-    if vsynth.set_patch :
-        print "setting: " + vsynth.patch
+    if mvp.set_patch :
+        print "setting: " + mvp.patch
         try :
-            patch = sys.modules[vsynth.patch]
+            patch = sys.modules[mvp.patch]
             error = ''
         except KeyError:
-            error = "Module " +vsynth.patch+ " is not loaded, probably it has errors"
+            error = "Module " +mvp.patch+ " is not loaded, probably it has errors"
 
     # reload
     # TODO: setup has to be called too
-    if vsynth.reload_patch :
+    if mvp.reload_patch :
         # delete the old
-        if vsynth.patch in sys.modules:  
-            del(sys.modules[vsynth.patch]) 
+        if mvp.patch in sys.modules:  
+            del(sys.modules[mvp.patch]) 
         print "deleted module, reloading"
-        patch_name = vsynth.patch
+        patch_name = mvp.patch
         patch_path = '../patches/'+patch_name+'/'+patch_name+'.py'
         try :
             patch = imp.load_source(patch_name, patch_path)
@@ -167,10 +168,10 @@ while 1:
           #  print formatted_lines[-3]
           #  print formatted_lines[-1]
     
-    vsynth.note_on = True
+    mvp.note_on = True
     
     try :
-        patch.draw(screen, vsynth)
+        patch.draw(screen, mvp)
         #error = ''
     except Exception, e:
         #print traceback.format_exc()
@@ -178,7 +179,7 @@ while 1:
 
     
     # osd
-    if vsynth.osd :
+    if mvp.osd :
         pygame.draw.rect(screen, OSDBG, (0, screen.get_height() - 40, screen.get_width(), 40))
         font = pygame.font.SysFont(None, 32)
         text = font.render('patch: ' + str(patch.__name__), True, WHITE, OSDBG)
@@ -187,7 +188,7 @@ while 1:
         text_rect.centery = screen.get_height() - 20
         screen.blit(text, text_rect)
        
-        if vsynth.note_on :
+        if mvp.note_on :
             notemsg = font.render('note on', True, WHITE, OSDBG)
         
         text_rect = notemsg.get_rect()
@@ -210,11 +211,11 @@ while 1:
 
     pygame.display.flip()
 
-    if vsynth.quit :
+    if mvp.quit :
         sys.exit()
     
     # clear all the events
-    vsynth.clear_flags()
+    mvp.clear_flags()
     #time.sleep(.01)
 
 time.sleep(1)

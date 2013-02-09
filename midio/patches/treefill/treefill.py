@@ -18,18 +18,18 @@ def setup():
 
 
 
-def draw(screen, vsynth):
-    if vsynth.quarter_note :
+def draw(screen, mvp):
+    if mvp.quarter_note :
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
         screen.fill(color) 
     
 
-    if vsynth.note_on :
+    if mvp.note_on :
         x=random.randrange(0,700)
         y=random.randrange(0,400)
-        size = vsynth.knob2
+        size = mvp.knob2
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255))
-        width = vsynth.knob1 // 50
+        width = mvp.knob1 // 50
         if width == 0 : width = 1
         if width > size : width = size
         pygame.draw.circle(screen,color,[x,y],size, 0)

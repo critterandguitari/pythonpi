@@ -15,10 +15,10 @@ def setup() :
 
 
 
-def draw(screen, vsynth) :
+def draw(screen, mvp) :
     global images, image_index
   
-    if vsynth.note_on:
+    if mvp.note_on:
         image_index += 1
         if image_index == len(images) : image_index = 0
         image = images[image_index]

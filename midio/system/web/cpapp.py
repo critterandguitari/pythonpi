@@ -6,7 +6,7 @@ import json
 import cherrypy
 import urllib
 
-# setup UDP socket for sending data to vsynth program
+# setup UDP socket for sending data to mvp program
 import time
 import socket
 

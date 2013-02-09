@@ -7,26 +7,26 @@ import pygame.gfxdraw
 def setup():
     print "setting up random pies ..."
 
-def draw(screen, vsynth):
+def draw(screen, mvp):
     print "drawing pieplate 2"
     
-    if vsynth.half_note: 
+    if mvp.half_note: 
         screen.fill((0,0,0))
             
-    if vsynth.note_on:
+    if mvp.note_on:
         x=random.randrange(0,700)
         y=random.randrange(0,400)
         pierad=random.randrange(10,) #radius
         arcstart=random.randrange(0,360)
         arcend=random.randrange(0, 360-arcstart)
-        coloralpha=vsynth.knob3/4
-#        size = vsynth.knob2
+        coloralpha=mvp.knob3/4
+#        size = mvp.knob2
         color = (random.randrange(0,255), random.randrange(0,255), random.randrange(0,255), coloralpha)
-#        width = vsynth.knob1 // 50
+#        width = mvp.knob1 // 50
 #        if width == 0 : width = 1
 #        if width > size : width = size 
-        nestrange=vsynth.knob1/8
-        fanrange=vsynth.knob2/10
+        nestrange=mvp.knob1/8
+        fanrange=mvp.knob2/10
         count=0
         for i in range(nestrange):
             count = i
